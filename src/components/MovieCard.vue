@@ -17,14 +17,35 @@ defineProps({
 
 <style scoped>
 .card {
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 1rem;
   background: white;
+  border-radius: 12px;
+  padding: 1.25rem;
+  border-top: 5px solid var(--verde);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+h2 {
+  margin: 0 0 0.25rem;
+  font-size: 1.25rem;
+  color: var(--verde-oscuro);
 }
 
 .meta {
-  color: #666;
+  margin: 0 0 0.75rem;
+  color: #6b7a80;
   font-size: 0.9rem;
+  font-weight: 600;
+}
+
+p {
+  margin: 0;
 }
 </style>
