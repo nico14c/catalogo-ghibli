@@ -1,38 +1,43 @@
-# catalogo-ghibli
+# Catálogo de Studio Ghibli
 
-This template should help get you started developing with Vue 3 in Vite.
+Web hecha con Vue para la Actividad 1 de Web Dinàmica. Es un catálogo de películas de Studio Ghibli: los datos están en Firestore y la web los lee y los enseña en tarjetas.
 
-## Recommended IDE Setup
+Web publicada: https://catalogo-ghibli.web.app
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## Cómo ejecutarla
 
-## Recommended Browser Setup
-
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
+```
+npm install            # instalar dependencias
+npm run dev            # probar en local (localhost:5173)
+npm run build          # generar la versión de producción (carpeta dist)
+firebase deploy --only hosting           # publicar la web
+firebase deploy --only firestore:rules   # publicar las reglas
 ```
 
-### Compile and Hot-Reload for Development
+Hace falta tener Node.js y Firebase CLI, y haber hecho `firebase login`.
 
-```sh
-npm run dev
-```
+## Componentes
 
-### Compile and Minify for Production
+- `Navbar.vue`: el menú de arriba.
+- `MovieList.vue`: recibe todas las películas y pinta una tarjeta por cada una.
+- `MovieCard.vue`: una tarjeta con los datos de una película.
 
-```sh
-npm run build
-```
+## Props
+
+`CatalogView.vue` lee las películas de Firestore y se las pasa a `MovieList.vue` con la prop `peliculas`. Esta le pasa a cada `MovieCard.vue` una película con la prop `pelicula` (título, director, año y descripción). Los hijos solo las muestran, no las modifican.
+
+## Rutas
+
+- `/` → `HomeView.vue`: portada.
+- `/catalogo` → `CatalogView.vue`: lista de películas desde Firestore.
+- `/sobre-el-proyecto` → `AboutView.vue`: explicación del proyecto.
+
+En `firebase.json` todas las rutas se redirigen a `index.html`, así que no dan 404 al recargar.
+
+## Firestore
+
+Colección `peliculas`, con los campos `titulo`, `director`, `anio` (número) y `descripcion`. Los datos se muestran en `/catalogo`, que también gestiona la carga, la falta de datos y los errores. Las reglas solo permiten leer.
+
+## Tecnologías
+
+Vue 3, Vue Router, Vite, Firestore y Firebase Hosting.
