@@ -3,23 +3,42 @@ import { RouterLink } from 'vue-router'
 </script>
 
 <template>
-  <nav class="navbar">
-    <RouterLink to="/">Inicio</RouterLink>
-    <RouterLink to="/catalogo">Catálogo</RouterLink>
-    <RouterLink to="/sobre-el-proyecto">Sobre el proyecto</RouterLink>
-  </nav>
+  <header class="navbar">
+    <RouterLink to="/" class="marca">🍃 Ghibli</RouterLink>
+    <nav>
+      <RouterLink to="/">Inicio</RouterLink>
+      <RouterLink to="/catalogo">Catálogo</RouterLink>
+      <RouterLink to="/sobre-el-proyecto">Sobre el proyecto</RouterLink>
+    </nav>
+  </header>
 </template>
 
 <style scoped>
 .navbar {
   display: flex;
-  gap: 1.5rem;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
   padding: 1rem 2rem;
   background: var(--verde-oscuro);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-.navbar a {
+.marca {
+  font-family: 'Fraunces', serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: white;
+  text-decoration: none;
+}
+
+nav {
+  display: flex;
+  gap: 1.5rem;
+}
+
+nav a {
   color: white;
   text-decoration: none;
   font-weight: 600;
@@ -27,11 +46,8 @@ import { RouterLink } from 'vue-router'
   border-bottom: 2px solid transparent;
 }
 
-.navbar a:hover {
-  border-bottom-color: var(--cielo);
-}
-
-.navbar a.router-link-exact-active {
+nav a:hover,
+nav a.router-link-exact-active {
   border-bottom-color: var(--cielo);
 }
 </style>
