@@ -15,16 +15,23 @@ import { RouterLink } from 'vue-router'
   display: flex;
   gap: 1.5rem;
   padding: 1rem 2rem;
-  background: #2c3e50;
+  background: var(--verde-oscuro);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
 .navbar a {
   color: white;
   text-decoration: none;
+  font-weight: 600;
+  padding-bottom: 2px;
+  border-bottom: 2px solid transparent;
+}
+
+.navbar a:hover {
+  border-bottom-color: var(--cielo);
 }
 
 .navbar a.router-link-exact-active {
-  font-weight: bold;
-  text-decoration: underline;
+  border-bottom-color: var(--cielo);
 }
 </style>
