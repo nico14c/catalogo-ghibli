@@ -24,10 +24,36 @@ onMounted(async () => {
 <template>
   <main>
     <h1>Catálogo</h1>
+    <p class="intro">Las películas de Studio Ghibli, leídas en directo desde Firestore.</p>
 
-    <p v-if="cargando">Cargando películas...</p>
-    <p v-else-if="error">No se han podido cargar las películas. Inténtalo de nuevo más tarde.</p>
-    <p v-else-if="peliculas.length === 0">Todavía no hay películas en el catálogo.</p>
+    <p v-if="cargando" class="aviso">Cargando películas...</p>
+    <p v-else-if="error" class="aviso aviso-error">
+      No se han podido cargar las películas. Inténtalo de nuevo más tarde.
+    </p>
+    <p v-else-if="peliculas.length === 0" class="aviso">
+      Todavía no hay películas en el catálogo.
+    </p>
     <MovieList v-else :peliculas="peliculas" />
   </main>
 </template>
+
+<style scoped>
+.intro {
+  margin: 0 0 2rem;
+  font-size: 1.1rem;
+}
+
+.aviso {
+  padding: 1.25rem;
+  text-align: center;
+  background: var(--cielo-claro);
+  color: var(--verde-oscuro);
+  font-weight: 600;
+  border-radius: 12px;
+}
+
+.aviso-error {
+  background: #fde8e0;
+  color: #9c3d1d;
+}
+</style>
